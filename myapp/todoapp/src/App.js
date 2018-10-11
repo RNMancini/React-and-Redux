@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-iport Todos from './Todos'
+import Todos from './Todos'
 
-clas App extends Component {
+class App extends Component {
     state = {
-        todos: {
+        todos: [
             {id: 1, content: 'buy some milk'},
             {id: 2, content: 'play mario kart'}
             ]
@@ -13,18 +13,26 @@ clas App extends Component {
                return todo.id !== id
            });
            this.setState({
-               todos: todos
+               todos
            })
            }
-               
-               render() {
+           
+addTodo = (todo) => {
+    todo.id = Math.random();
+    let todos = [...this.state.todos, todo];
+this.setState({
+    todos
+})
+}
+           render() {
             return (
                 <div className="todo-app container">
                 <h1 className="center blue-text">Todo's</h1>
                 <Todos todos={this.state.todos} />
                 </div>
                 );
+                    }
                 }
-                }
+                
                 export default App;
             
