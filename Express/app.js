@@ -1,15 +1,15 @@
 var express = require('express');
 var app = express();
 
-var logger = require('./logger');
-app.use(logger);
-
 app.use(express.static('public'));
 
-app.get('/blocks', function(request, response) {
-    var blocks = ['Fixed', 'Movable', 'Rotation'];
-    response.json(blocks);
-})
+var blocks = require('./routes/blocks');
+var buildings = require('/routes/buildings');
+var users = require('./routes/users');
+
+app.use('/blocks', blocks);
+app.use('/buildings', buildings);
+app.use('/users', users);
 
 app.listen(3000, function () {
     console.log('Listening on 3000 \n');
